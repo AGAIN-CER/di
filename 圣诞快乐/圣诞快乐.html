@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>圣诞快乐 · 朱南同学</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+     background-image: url('sn.jpg');
+     background-size: cover;        /* 让图片覆盖整个屏幕 */
+     background-position: center;   /* 居中显示 */
+     background-repeat: no-repeat;  /* 不重复 */
+     background-attachment: fixed;  /* 固定背景，滚动时不动（可选） */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+      position: relative;
+    }
+
+    .snow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: white;
+      font-size: 1.2em;
+      opacity: 0.8;
+      user-select: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* 主祝福区域 */
+    .greeting {
+      text-align: center;
+      color: white;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .name {
+      font-size: 3.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ffcc00;
+      animation: pulse 2s infinite alternate;
+    }
+
+  .祝福语 {
+     font-size: 2rem;
+     color: white;
+     text-shadow:
+     0 0 5px #fff,
+     0 0 10px #ffcc00;
+     animation: glowAndChangeColor 3s infinite alternate;
+     margin-top: 20px;
+    }
+
+    .message {
+      font-size: 4rem;
+      font-weight: bold;
+      letter-spacing: 6px;
+      text-shadow:
+        0 0 10px #ff0,
+        0 0 20px #f00,
+        0 0 30px #f00;
+      animation: glow 2s infinite alternate;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-top: 10px;
+      display: block;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff0,
+          0 0 30px #f00;
+      }
+      to {
+        text-shadow:
+          0 0 15px #fff,
+          0 0 25px #0ff,
+          0 0 35px #0f0;
+      }
+    }
+
+    /* 响应式适配 */
+    @media (max-width: 768px) {
+      .name { font-size: 2.2rem; }
+      .message { font-size: 2.8rem; letter-spacing: 4px; }
+      .emoji { font-size: 2.4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .name { font-size: 1.8rem; }
+      .message { font-size: 2rem; letter-spacing: 2px; }
+      .emoji { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 飘雪背景 -->
+  <div class="snow-container" id="snow"></div>
+
+  <!-- 祝福文字 -->
+  <div class="greeting">
+  <img src="1.jpg" alt="圣诞树" style="width: 180px; height: auto; margin-bottom: 20px; border-radius: 8px;">
+    <div class="emoji">🎄</div>
+    <div class="name">  朱南同学</div>
+    <div class="message">圣诞快乐</div>
+    <div class="emoji">🎁</div>
+    <div class="祝福语">希望你快乐</div>
+  </div>
+
+  <script>
+    const snowContainer = document.getElementById('snow');
+    const snowflakes = ['❄', '❅', '❆'];
+
+    function createSnowflake() {
+      const flake = document.createElement('div');
+      flake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+      flake.classList.add('snowflake');
+
+      flake.style.left = Math.random() * 100 + 'vw';
+      flake.style.fontSize = (Math.random() * 1.5 + 0.8) + 'em';
+      flake.style.opacity = Math.random() * 0.7 + 0.3;
+      flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+      snowContainer.appendChild(flake);
+
+      setTimeout(() => flake.remove(), 10000);
+    }
+
+    setInterval(createSnowflake, 200);
+  </script>
+
+</body>
+</html>
